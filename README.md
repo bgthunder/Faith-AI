@@ -1,15 +1,16 @@
 ## Faith — Mood‑Aware AI Companion
 
 Faith is an experimental prototype: a lightweight, mood‑aware conversational agent that asks a daily check‑in, personalizes replies based on mood context, offers short wellness suggestions, detects crisis language, and exposes simple mood analytics. This repository contains a React + Vite frontend and a Node.js + Express backend (in‑memory stores by default). The system is intended for research/demonstration and is not production‑ready.
+
 ## Table of contents
 - About
 - Features
 - Architecture
 - Tech stack
 - Getting started (local)
-	- Prerequisites
-	- Backend
-	- Frontend
+  - Prerequisites
+  - Backend
+  - Frontend
 - Configuration / Environment
 - API (examples)
 - Developer notes
@@ -130,20 +131,20 @@ All examples assume backend at `http://localhost:5000`.
 - Send a chat message. You can optionally include `mood` or `dailyMood` (preferred).
 ```bash
 curl -X POST http://localhost:5000/chat \
-	-H "Content-Type: application/json" \
-	-d '{"message":"I feel stressed today","mood":"stressed"}'
+  -H "Content-Type: application/json" \
+  -d '{"message":"I feel stressed today","mood":"stressed"}'
 ```
 Response (example):
 ```json
 {
-	"mood": "stressed",
-	"reply": "Hey there! It's okay to feel stressed sometimes...",
-	"wellnessActivity": {
-		"key":"breathing",
-		"title":"Breathing reset",
-		"description":"Try 4 slow breaths in, 4 hold, 6 out...",
-		"icon":"🌿"
-	}
+  "mood": "stressed",
+  "reply": "Hey there! It's okay to feel stressed sometimes...",
+  "wellnessActivity": {
+    "key":"breathing",
+    "title":"Breathing reset",
+    "description":"Try 4 slow breaths in, 4 hold, 6 out...",
+    "icon":"🌿"
+  }
 }
 ```
 
@@ -151,8 +152,8 @@ Response (example):
 - Record today's mood:
 ```bash
 curl -X POST http://localhost:5000/daily-checkin \
-	-H "Content-Type: application/json" \
-	-d '{"mood":"stressed","note":"Long day at work"}'
+  -H "Content-Type: application/json" \
+  -d '{"mood":"stressed","note":"Long day at work"}'
 ```
 
 ### GET /analytics
@@ -192,11 +193,11 @@ Design decisions:
 ## Data, privacy & ethics
 - Current prototype stores analytics, memory, and posts in server memory; daily check‑in uses `localStorage`. Data is ephemeral and lost on server restart.
 - If you run the demo with real people or plan a study:
-	- Obtain IRB/ethics approval where required.
-	- Provide informed consent and clear crisis disclaimers.
-	- Anonymize or do NOT collect personal identifiers.
-	- Implement secure transport (HTTPS) and storage (encrypted).
-	- Retention policy and deletion mechanism should be in place.
+  - Obtain IRB/ethics approval where required.
+  - Provide informed consent and clear crisis disclaimers.
+  - Anonymize or do NOT collect personal identifiers.
+  - Implement secure transport (HTTPS) and storage (encrypted).
+  - Retention policy and deletion mechanism should be in place.
 
 ---
 
@@ -232,16 +233,3 @@ If you want to collaborate, run a pilot, or report an issue:
 ---
 
 If you’d like, I can also add `CONTRIBUTING.md`, `SECURITY.md`, and a `LICENSE` file. Let me know which one to create next.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
